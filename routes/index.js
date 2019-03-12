@@ -2,6 +2,11 @@ const express = require("express");
 const router = express.Router();
 const controllers = require("../controllers");
 
+router.get("/", (req, res) => {
+  res.send(
+    "Please visit https://github.com/GTBitsOfGood/bootcamp/tree/master/10_react_with_apis for directions on how to use this API"
+  );
+});
 router.get("/posts", controllers.posts.index);
 router.post("/posts", controllers.posts.store);
 router.get("/posts/:id", controllers.posts.get);
