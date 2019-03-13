@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
  * @group Posts - Operations about posts
  * @operationId getPosts
  * @returns {PostResponse[]} 200 - An array of posts
- * @returns {Error}  500 - Unexpected error
+ * @returns {Error.model}  500 - Unexpected error
  */
 router.get("/posts", controllers.posts.index);
 
@@ -25,8 +25,8 @@ router.get("/posts", controllers.posts.index);
  * @group Posts - Operations about posts
  * @operationId createPost
  * @returns {PostResponse.model} 201 - The new post stored in the database
- * @returns {Error}  400 - Schema validation error
- * @returns {Error}  500 - Unexpected error
+ * @returns {Error.model}  400 - Schema validation error
+ * @returns {Error.model}  500 - Unexpected error
  */
 router.post("/posts", controllers.posts.store);
 
@@ -37,7 +37,7 @@ router.post("/posts", controllers.posts.store);
  * @group Posts - Operations about posts
  * @operationId getPost
  * @returns {PostResponse.model} 200 - The post with the corresponding id
- * @returns {Error}  500 - Unexpected error
+ * @returns {Error.model}  500 - Unexpected error
  */
 router.get("/posts/:id", controllers.posts.get);
 
@@ -49,8 +49,8 @@ router.get("/posts/:id", controllers.posts.get);
  * @group Posts - Operations about posts
  * @operationId editPost
  * @returns {PostResponse.model} 200 - The edited post stored in the database
- * @returns {Error}  400 - Schema validation error
- * @returns {Error}  500 - Unexpected error
+ * @returns {Error.model}  400 - Schema validation error
+ * @returns {Error.model}  500 - Unexpected error
  */
 router.patch("/posts/:id", controllers.posts.update);
 
@@ -61,7 +61,7 @@ router.patch("/posts/:id", controllers.posts.update);
  * @group Posts - Operations about posts
  * @operationId deletePost
  * @returns {Response} 200 - Successful deletion
- * @returns {Error}  500 - Unexpected error
+ * @returns {Error.model}  500 - Unexpected error
  */
 router.delete("/posts/:id", controllers.posts.delete);
 
@@ -73,8 +73,8 @@ router.delete("/posts/:id", controllers.posts.delete);
  * @group Posts - Operations about posts
  * @operationId addTopLevelComment
  * @returns {PostResponse.model} 201 - The post with the new comment stored in the database
- * @returns {Error}  400 - Schema validation error
- * @returns {Error}  500 - Unexpected error
+ * @returns {Error.model}  400 - Schema validation error
+ * @returns {Error.model}  500 - Unexpected error
  */
 router.post("/posts/:id/comment", controllers.posts.comment);
 
@@ -84,7 +84,7 @@ router.post("/posts/:id/comment", controllers.posts.comment);
  * @group Comments - Operations about comments
  * @operationId getComments
  * @returns {CommentResponse[]} 200 - An array of comments
- * @returns {Error}  500 - Unexpected error
+ * @returns {Error.model}  500 - Unexpected error
  */
 router.get("/comments", controllers.comments.index);
 
@@ -95,7 +95,7 @@ router.get("/comments", controllers.comments.index);
  * @group Comments - Operations about comments
  * @operationId getComment
  * @returns {CommentResponse.model} 200 - The comment with the corresponding id
- * @returns {Error}  500 - Unexpected error
+ * @returns {Error.model}  500 - Unexpected error
  */
 router.get("/comments/:id", controllers.comments.get);
 
@@ -107,8 +107,8 @@ router.get("/comments/:id", controllers.comments.get);
  * @group Comments - Operations about comments
  * @operationId editComment
  * @returns {CommentResponse.model} 200 - The edited comment stored in the database
- * @returns {Error}  400 - Schema validation error
- * @returns {Error}  500 - Unexpected error
+ * @returns {Error.model}  400 - Schema validation error
+ * @returns {Error.model}  500 - Unexpected error
  */
 router.patch("/comments/:id", controllers.comments.update);
 
@@ -119,7 +119,7 @@ router.patch("/comments/:id", controllers.comments.update);
  * @group Comments - Operations about comments
  * @operationId deleteComment
  * @returns {Response} 200 - Successful deletion
- * @returns {Error}  500 - Unexpected error
+ * @returns {Error.model}  500 - Unexpected error
  */
 router.delete("/comments/:id", controllers.comments.delete);
 
@@ -131,8 +131,8 @@ router.delete("/comments/:id", controllers.comments.delete);
  * @group Comments - Operations about comments
  * @operationId addChildComment
  * @returns {CommentResponse.model} 201 - The parent comment with the new child comment stored in the database
- * @returns {Error}  400 - Schema validation error
- * @returns {Error}  500 - Unexpected error
+ * @returns {Error.model}  400 - Schema validation error
+ * @returns {Error.model}  500 - Unexpected error
  */
 router.post("/comments/:id/comment", controllers.comments.comment);
 
@@ -149,6 +149,12 @@ router.use("/", (req, res, next) => {
     return res.status(status).json(response);
 });
 module.exports = router;
+
+/**
+ * @typedef Error
+ * @property {string} status.required - "error"
+ * @property {string} error.required - the error message
+ */
 
 /**
  * @typedef PostResponse
