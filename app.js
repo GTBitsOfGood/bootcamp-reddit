@@ -35,7 +35,7 @@ let options = {
         info: {
             description: 'GT Bits of Good - Bootcamp Project',
             title: 'Reddit Backend',
-            version: '1.0.0',
+            version: '2.0.0',
         },
         basePath: '/api/v1',
         produces: [
