@@ -7,7 +7,17 @@ router.get("/", (req, res) => {
     "Please visit https://github.com/GTBitsOfGood/bootcamp/tree/master/10_react_with_apis for directions on how to use this API"
   );
 });
+
+/**
+ * Get all posts on the server and their top-level comments.
+ * @route GET /posts
+ * @group Posts - Operations about posts
+ * @operationId getPosts
+ * @returns {Post[]} 200 - An array of posts
+ * @returns {Error}  500 - Unexpected error
+ */
 router.get("/posts", controllers.posts.index);
+
 router.post("/posts", controllers.posts.store);
 router.get("/posts/:id", controllers.posts.get);
 router.patch("/posts/:id", controllers.posts.update);
@@ -33,3 +43,22 @@ router.use("/", (req, res, next) => {
   return res.status(status).json(response);
 });
 module.exports = router;
+
+/**
+ * @typedef Post
+ * @property {string} author.required - The person who created the post
+ * @property {string} title.required - The title of the post
+ * @property {string} text.required - The content of the post
+ * @property {number} upVotes.required - The number of up votes
+ * @property {number} downVotes.required - The number of down votes
+ * @property {Comment[]} comments.required - An array of top-level comments for the post
+ */
+
+/**
+ * @typedef Comment
+ * @property {string} author.required - The person who created the comment
+ * @property {string} text.required - The content of the comment
+ * @property {number} upVotes.required - The number of up votes
+ * @property {number} downVotes.required - The number of down votes
+ * @property {Comment[]} comments.required - An array of children comments for this comment. Follows the same schema as this schema
+ */
