@@ -13,68 +13,68 @@ router.get("/", (req, res) => {
  * @route GET /posts
  * @group Posts - Operations about posts
  * @operationId getPosts
- * @returns {PostResponse[]} 200 - An array of posts
- * @returns {Error.model}  500 - Unexpected error
+ * @returns {ApiResponseMultiplePosts.model} 200 - An array of posts
+ * @returns {ApiResponseError.model}  500 - Unexpected error in the backend...
  */
 router.get("/posts", controllers.posts.index);
 
 /**
  * Create a new post.
  * @route POST /posts
- * @param {PostRequest.model} post.body.required - the new post
+ * @param {ApiRequestPost.model} post.body.required - The new post
  * @group Posts - Operations about posts
  * @operationId createPost
- * @returns {PostResponse.model} 201 - The new post stored in the database
- * @returns {Error.model}  400 - Schema validation error
- * @returns {Error.model}  500 - Unexpected error
+ * @returns {ApiResponseSinglePost.model} 201 - The new post stored in the database
+ * @returns {ApiResponseError.model}  400 - Schema validation error
+ * @returns {ApiResponseError.model}  500 - Unexpected error in the backend...
  */
 router.post("/posts", controllers.posts.store);
 
 /**
  * Get a specific post.
  * @route GET /posts/:id
- * @param {number} id.path - the post id
+ * @param {number} id.path.required - The post id
  * @group Posts - Operations about posts
  * @operationId getPost
- * @returns {PostResponse.model} 200 - The post with the corresponding id
- * @returns {Error.model}  500 - Unexpected error
+ * @returns {ApiResponseSinglePost.model} 200 - The post with the corresponding id
+ * @returns {ApiResponseError.model}  500 - Unexpected error in the backend...
  */
 router.get("/posts/:id", controllers.posts.get);
 
 /**
  * Edit a specific post.
  * @route PATCH /posts/:id
- * @param {number} id.path - the post id
- * @param {PostRequest.model} post.body.required - the edited post
+ * @param {number} id.path.required - The post id
+ * @param {ApiRequestPost.model} post.body.required - The edited post
  * @group Posts - Operations about posts
  * @operationId editPost
- * @returns {PostResponse.model} 200 - The edited post stored in the database
- * @returns {Error.model}  400 - Schema validation error
- * @returns {Error.model}  500 - Unexpected error
+ * @returns {ApiResponseSinglePost.model} 200 - The edited post stored in the database
+ * @returns {ApiResponseError.model}  400 - Schema validation error
+ * @returns {ApiResponseError.model}  500 - Unexpected error in the backend...
  */
 router.patch("/posts/:id", controllers.posts.update);
 
 /**
  * Delete a specific post.
  * @route DELETE /posts/:id
- * @param {number} id.path - the post id
+ * @param {number} id.path.required - The post id
  * @group Posts - Operations about posts
  * @operationId deletePost
- * @returns {Response} 200 - Successful deletion
- * @returns {Error.model}  500 - Unexpected error
+ * @returns {ApiResponseSuccess.model} 200 - Successful deletion
+ * @returns {ApiResponseSinglePost.model}  500 - Unexpected error in the backend...
  */
 router.delete("/posts/:id", controllers.posts.delete);
 
 /**
  * Create a new top-level comment for the given post.
  * @route POST /posts/:id/comment
- * @param {number} id.path - the post id
- * @param {CommentRequest.model} comment.body.required - the new comment for the post
+ * @param {number} id.path.required - The post id
+ * @param {ApiRequestComment.model} comment.body.required - The new comment for the post
  * @group Posts - Operations about posts
  * @operationId addTopLevelComment
- * @returns {PostResponse.model} 201 - The post with the new comment stored in the database
- * @returns {Error.model}  400 - Schema validation error
- * @returns {Error.model}  500 - Unexpected error
+ * @returns {ApiResponseSinglePost.model} 201 - The post with the new comment stored in the database
+ * @returns {ApiResponseError.model}  400 - Schema validation error
+ * @returns {ApiResponseError.model}  500 - Unexpected error in the backend...
  */
 router.post("/posts/:id/comment", controllers.posts.comment);
 
@@ -83,56 +83,56 @@ router.post("/posts/:id/comment", controllers.posts.comment);
  * @route GET /comments
  * @group Comments - Operations about comments
  * @operationId getComments
- * @returns {CommentResponse[]} 200 - An array of comments
- * @returns {Error.model}  500 - Unexpected error
+ * @returns {ApiResponseMultipleComments.model} 200 - An array of comments
+ * @returns {ApiResponseError.model}  500 - Unexpected error in the backend...
  */
 router.get("/comments", controllers.comments.index);
 
 /**
  * Get a specific comment.
  * @route GET /comments/:id
- * @param {number} id.path - the comment id
+ * @param {number} id.path.required - The comment id
  * @group Comments - Operations about comments
  * @operationId getComment
- * @returns {CommentResponse.model} 200 - The comment with the corresponding id
- * @returns {Error.model}  500 - Unexpected error
+ * @returns {ApiResponseSingleComment.model} 200 - The comment with the corresponding id
+ * @returns {ApiResponseError.model}  500 - Unexpected error in the backend...
  */
 router.get("/comments/:id", controllers.comments.get);
 
 /**
  * Edit a specific comment.
  * @route PATCH /comments/:id
- * @param {number} id.path - the comment id
- * @param {CommentRequest.model} comment.body.required - the edited comment
+ * @param {number} id.path.required - The comment id
+ * @param {ApiRequestComment.model} comment.body.required - The edited comment
  * @group Comments - Operations about comments
  * @operationId editComment
- * @returns {CommentResponse.model} 200 - The edited comment stored in the database
- * @returns {Error.model}  400 - Schema validation error
- * @returns {Error.model}  500 - Unexpected error
+ * @returns {ApiResponseSingleComment.model} 200 - The edited comment stored in the database
+ * @returns {ApiResponseError.model}  400 - Schema validation error
+ * @returns {ApiResponseError.model}  500 - Unexpected error in the backend...
  */
 router.patch("/comments/:id", controllers.comments.update);
 
 /**
  * Delete a specific comment.
  * @route DELETE /comments/:id
- * @param {number} id.path - the comment id
+ * @param {number} id.path.required - The comment id
  * @group Comments - Operations about comments
  * @operationId deleteComment
- * @returns {Response} 200 - Successful deletion
- * @returns {Error.model}  500 - Unexpected error
+ * @returns {ApiResponseSuccess.model} 200 - Successful deletion
+ * @returns {ApiResponseError.model}  500 - Unexpected error in the backend...
  */
 router.delete("/comments/:id", controllers.comments.delete);
 
 /**
  * Create a new child comment for the given comment.
  * @route POST /comments/:id/comment
- * @param {number} id.path - the comment id
- * @param {CommentRequest.model} comment.body.required - the new child comment for the given comment
+ * @param {number} id.path.required - The comment id
+ * @param {ApiRequestComment.model} comment.body.required - The new child comment for the given comment
  * @group Comments - Operations about comments
  * @operationId addChildComment
- * @returns {CommentResponse.model} 201 - The parent comment with the new child comment stored in the database
- * @returns {Error.model}  400 - Schema validation error
- * @returns {Error.model}  500 - Unexpected error
+ * @returns {ApiResponseSingleComment.model} 201 - The parent comment with the new child comment stored in the database
+ * @returns {ApiResponseError.model}  400 - Schema validation error
+ * @returns {ApiResponseError.model}  500 - Unexpected error in the backend...
  */
 router.post("/comments/:id/comment", controllers.comments.comment);
 
@@ -151,9 +151,35 @@ router.use("/", (req, res, next) => {
 module.exports = router;
 
 /**
- * @typedef Error
+ * @typedef ApiResponseSuccess
+ * @property {string} status.required - "ok"
+ */
+
+/**
+ * @typedef ApiResponseError
  * @property {string} status.required - "error"
  * @property {string} error.required - the error message
+ */
+
+/**
+ * @typedef ApiRequestPost
+ * @property {string} [author]
+ * @property {string} [title]
+ * @property {string} [text]
+ * @property {number} [upVotes]
+ * @property {number} [downVotes]
+ */
+
+/**
+ * @typedef ApiResponseMultiplePosts
+ * @property {string} status.required - "ok"
+ * @property {PostResponse[]} posts.required
+ */
+
+/**
+ * @typedef ApiResponseSinglePost
+ * @property {string} status.required - "ok"
+ * @property {PostResponse.model} post.required
  */
 
 /**
@@ -170,12 +196,23 @@ module.exports = router;
  */
 
 /**
- * @typedef PostRequest
- * @property {string} author.required
- * @property {string} title.required
- * @property {string} text.required
+ * @typedef ApiRequestComment
+ * @property {string} [author]
+ * @property {string} [text]
  * @property {number} [upVotes]
  * @property {number} [downVotes]
+ */
+
+/**
+ * @typedef ApiResponseMultipleComments
+ * @property {string} status.required - "ok"
+ * @property {CommentResponse[]} comments.required
+ */
+
+/**
+ * @typedef ApiResponseSingleComment
+ * @property {string} status.required - "ok"
+ * @property {CommentResponse.model} comments.required
  */
 
 /**
@@ -188,12 +225,4 @@ module.exports = router;
  * @property {string} createdAt.required
  * @property {string} updatedAt.required
  * @property {CommentResponse[]} comments.required
- */
-
-/**
- * @typedef CommentRequest
- * @property {string} author.required
- * @property {string} text.required
- * @property {number} [upVotes]
- * @property {number} [downVotes]
  */
