@@ -41,7 +41,7 @@ let options = {
         produces: [
             "application/json"
         ],
-        schemes: ['http', 'https'],
+        schemes: ['https', 'http'],
         securityDefinitions: {}
     },
     basedir: __dirname, //app absolute path
