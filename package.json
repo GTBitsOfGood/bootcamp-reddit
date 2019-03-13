@@ -11,6 +11,7 @@
     "debug": "~2.6.9",
     "dotenv": "^6.2.0",
     "express": "~4.16.0",
+    "express-swagger-generator": "^1.1.13",
     "mongoose": "^5.4.16",
     "morgan": "~1.9.0"
   }
