@@ -152,42 +152,42 @@ module.exports = router;
 
 /**
  * @typedef PostResponse
- * @property {string} id.required - The ID of the post
- * @property {string} author.required - The person who created the post
- * @property {string} title.required - The title of the post
- * @property {string} text.required - The content of the post
- * @property {number} upVotes.required - The number of up votes
- * @property {number} downVotes.required - The number of down votes
- * @property {string} createdAt.required - The created datetime
- * @property {string} updatedAt.required - The updated datetime
- * @property {CommentResponse[]} comments.required - An array of top-level comments for the post
+ * @property {string} id.required
+ * @property {string} author.required
+ * @property {string} title.required
+ * @property {string} text.required
+ * @property {number} upVotes.required
+ * @property {number} downVotes.required
+ * @property {string} createdAt.required
+ * @property {string} updatedAt.required
+ * @property {CommentResponse[]} comments.required
  */
 
 /**
  * @typedef PostRequest
- * @property {string} author.required - The person who created the post
- * @property {string} title.required - The title of the post
- * @property {string} text.required - The content of the post
- * @property {number} [upVotes] - The number of up votes
- * @property {number} [downVotes] - The number of down votes
+ * @property {string} author.required
+ * @property {string} title.required
+ * @property {string} text.required
+ * @property {number} [upVotes]
+ * @property {number} [downVotes]
  */
 
 /**
  * @typedef CommentResponse
- * @property {string} id.required - The ID of the comment
- * @property {string} author.required - The person who created the comment
- * @property {string} text.required - The content of the comment
- * @property {number} upVotes.required - The number of up votes
- * @property {number} downVotes.required - The number of down votes
- * @property {string} createdAt.required - The created datetime
- * @property {string} updatedAt.required - The updated datetime
- * @property {CommentResponse[]} comments.required - An array of children comments for this comment. Follows the same schema as this schema
+ * @property {string} id.required
+ * @property {string} author.required
+ * @property {string} text.required
+ * @property {number} upVotes.required
+ * @property {number} downVotes.required
+ * @property {string} createdAt.required
+ * @property {string} updatedAt.required
+ * @property {CommentResponse[]} comments.required
  */
 
 /**
  * @typedef CommentRequest
- * @property {string} author.required - The person who created the comment
- * @property {string} text.required - The content of the comment
- * @property {number} [upVotes] - The number of up votes
- * @property {number} [downVotes] - The number of down votes
+ * @property {string} author.required
+ * @property {string} text.required
+ * @property {number} [upVotes]
+ * @property {number} [downVotes]
  */
