@@ -60,4 +60,4 @@ postSchema.static("findByIdAndAddComment", function(id, commentData) {
     .then(post => this.findById(post.id).populate("comments"));
 });
 
-module.exports = mongoose.model("PostResponse", postSchema);
+module.exports = mongoose.model("Post", postSchema);
