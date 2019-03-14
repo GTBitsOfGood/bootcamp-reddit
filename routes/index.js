@@ -2,11 +2,7 @@ const express = require("express");
 const router = express.Router();
 const controllers = require("../controllers");
 
-router.get("/", (req, res) => {
-    res.send(
-        "Please visit https://github.com/GTBitsOfGood/bootcamp/tree/master/10_react_with_apis for directions on how to use this API"
-    );
-});
+router.get("/", (req, res) => res.redirect("/api-docs"));
 
 /**
  * Get all posts on the server.
@@ -137,16 +133,16 @@ router.delete("/comments/:id", controllers.comments.delete);
 router.post("/comments/:id/comment", controllers.comments.comment);
 
 router.use("/", (req, res, next) => {
-    let status = 500;
-    let response = {status: "error", msg: "Internal Server Error"};
-    if (res.locals.data) {
-        response = {status: "ok", ...res.locals.data};
-        status = res.locals.status || 200;
-    } else if (res.locals.error) {
-        status = res.locals.status || 500;
-        response = {status: "error", ...res.locals.error};
-    }
-    return res.status(status).json(response);
+  let status = 500;
+  let response = { status: "error", msg: "Internal Server Error" };
+  if (res.locals.data) {
+    response = { status: "ok", ...res.locals.data };
+    status = res.locals.status || 200;
+  } else if (res.locals.error) {
+    status = res.locals.status || 500;
+    response = { status: "error", ...res.locals.error };
+  }
+  return res.status(status).json(response);
 });
 module.exports = router;
 

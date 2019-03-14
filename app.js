@@ -34,9 +34,10 @@ let options = {
     info: {
       description: "GT Bits of Good - Bootcamp Project",
       title: "Reddit Backend",
-      version: "2.0.0"
+      version: "1.0.0"
     },
     basePath: "/api/v1",
+    // basePath: "/",
     produces: ["application/json"],
     schemes: ["https", "http"],
     securityDefinitions: {}
@@ -45,5 +46,6 @@ let options = {
   files: ["./routes/**/*.js"] //Path to the API handle folder
 };
 expressSwagger(options);
+app.use("/*", (req, res) => res.redirect("/api-docs"));
 
 module.exports = app;
