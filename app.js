@@ -1,7 +1,7 @@
 const express = require("express");
-const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const cors = require("cors");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const swaggerUiGenerator = require("express-swagger-generator");
@@ -10,6 +10,7 @@ const swaggerUiGenerator = require("express-swagger-generator");
 require("dotenv").config();
 
 const app = express();
+app.use(cors());
 
 // Generate API docs
 const expressSwagger = swaggerUiGenerator(app);
