@@ -28,6 +28,15 @@ const commentSchema = mongoose.Schema(
   { timestamps: true }
 );
 
+const autoPopulateChildren = function(next) {
+  this.populate("comments");
+  next();
+};
+
+commentSchema
+  .pre("findOne", autoPopulateChildren)
+  .pre("find", autoPopulateChildren);
+
 commentSchema.static("findByIdAndCascadeDelete", function(id) {
   console.log("Comment Cascade Delete got called! ID: ", id);
   return this.findById(id).then(comment => {
