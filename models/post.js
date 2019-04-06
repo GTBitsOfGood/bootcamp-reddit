@@ -39,6 +39,7 @@ const autoPopulateChildren = function(next) {
 };
 
 postSchema
+  .pre("findOneAndUpdate", autoPopulateChildren)
   .pre("findOne", autoPopulateChildren)
   .pre("find", autoPopulateChildren);
 

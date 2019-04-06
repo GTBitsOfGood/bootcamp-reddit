@@ -34,6 +34,7 @@ const autoPopulateChildren = function(next) {
 };
 
 commentSchema
+  .pre("findOneAndUpdate", autoPopulateChildren)
   .pre("findOne", autoPopulateChildren)
   .pre("find", autoPopulateChildren);
 
