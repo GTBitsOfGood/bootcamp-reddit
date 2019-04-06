@@ -3,6 +3,7 @@ const { Post } = require("../models");
 module.exports.index = (req, res, next) => {
   Post.find()
     .populate("comments")
+    .sort("-createdAt")
     .then(posts => {
       res.locals.data = { posts };
       res.locals.status = 200;
