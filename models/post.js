@@ -33,6 +33,15 @@ const postSchema = mongoose.Schema(
   { timestamps: true }
 );
 
+const autoPopulateChildren = function(next) {
+  this.populate("comments");
+  next();
+};
+
+postSchema
+  .pre("findOne", autoPopulateChildren)
+  .pre("find", autoPopulateChildren);
+
 postSchema.static("findByIdAndCascadeDelete", function(id) {
   return this.findById(id).then(post => {
     post.comments.forEach(com => Comment.findByIdAndCascadeDelete(com));
